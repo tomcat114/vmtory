@@ -64,8 +64,8 @@ def allvms(request):
         table.prefix = 'active_vms'
         table_deleted = AllVMTable(q_deleted)
         table_deleted.prefix = 'deleted_vms'
-        RequestConfig(request).configure(table)
-        RequestConfig(request).configure(table_deleted)
+        RequestConfig(request, paginate={"per_page": 100}).configure(table)
+        RequestConfig(request, paginate={"per_page": 100}).configure(table_deleted)
         return render(request, "all_vms.html",
                       {"vms": table,
                        'viewfilter': 'all',
